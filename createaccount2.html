@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+  <style>
+        #leftPanel{
+        }
+    body{
+      background-color: ghostwhite;
+    }
+    #defaultImage{
+        opacity: 0.4;
+    }
+    button {
+        height:45px;
+        width:160px;
+        background-color: #968A8A;
+    }
+    .cBtn {
+        width: 250px;
+    }
+    .userprofile-sidebar{
+        background-color: #f1f1f1;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        padding-bottom: 30px;
+
+ }
+    .userprofile-usertitle{
+        text-align: center;
+    }
+    #rightBody{
+        height:1000px;
+        background-color: ghostwhite;
+    }
+    #addReview{
+        height:600px;
+        background-color:#E1E1E2;
+        color: #4C3F54;
+    }
+    .gutter{
+        //background-color:yellow;
+    }
+
+.addRevNav{
+        height:100px;
+        background-color:#968A8A;
+        padding-top: 35px;
+    }
+    .displayReview{
+        height:500px;
+        background-color:#f1f1f1;
+        color: #4C3F54;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        margin-bottom: 30px;
+    }
+    .reviewTitle{
+        color: #333333;
+                font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+                font-style: italic;
+                font-size: 2em;
+                text-align: right;
+        margin-top:20px;
+                padding-left: 50px;
+    }
+    .frontRevPic{
+        padding-top: 0px;
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-bottom:0px;
+    }
+
+
+
+.revHalf{
+        height:500px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+}
+#revLeft{
+        background-color:#E1E1E2;
+    color: #4C3F54;
+}
+#revRight{
+        background-color:#E1E1E2;
+    color: #4C3F54;
+}
+#cheeseLeft{
+        background-color: #4C3F54;
+    color: #BDC3DB;
+}
+#cheeseRight{
+        background-color: #4C3F54;
+    color: #BDC3DB;
+}
+#shopLeft{
+        background-color:#BDC3DB;
+        color: #4C3F54;
+    padding-top:10px;
+}
+
+
+#shopRight{
+        background-color:#BDC3DB;
+    color: #4C3F54;
+}
+#ddList {
+        position: absolute;
+        display: block;
+    background-color: #f1f1f1;
+        border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    width: 210px;
+    margin-top: 0px;
+    padding-left: 0px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-size: 1.5em;
+    color: #4D4B58;
+    font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    cursor: pointer;
+}
+
+
+
+#mdList {
+        position: absolute;
+        display: block;
+    background-color: #f1f1f1;
+        border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    width: 210px;
+    margin-top: 0px;
+    padding-left: 0px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-size: 1.5em;
+    color: #4D4B58;
+    font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+    cursor: pointer;
+}
+ input{
+        color: #E1E1E2;
+                border-top-style: none;
+        border-right-style: none;
+                border-bottom-style: solid;
+                border-left-style: none;
+        border-width: 1px 1px 5px 1px;
+        border-color: #694489;
+        background-color: #968A8A;
+        text-align: center;
+        font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+                font-style: italic;
+        font-size: 1.5em;
+        }
+
+.sInput{
+        border-color: #838EDE;
+}
+    input::placeholder{
+        font-size: 1.5em;
+        color: #694489;
+        font-family: ‘Palatino Linotype’, ‘Book Antiqua’, Palatino, serif;
+                font-style: italic;
+        font-weight: bold;
+    }
+.sInput::placeholder{
+        color: #838EDE;
+}
+.reviewInput:focus{
+        border-style:None;
+    border-bottom-style:solid;
+}
+
+
+.revPic{
+        display: inline-block;
+        padding-top:50px;
+}
+.revBody{
+        display: inline-block;
+    //margin-left: 20px;
+    padding-top: 50px;
+}
+.selectable{
+        list-style-type: None;
+}
+#addShopBtn{
+        margin-left: 150px;
+}
+  </style>
+</head>
+
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+	{{baseUrl}}
+	<form id="cheeseLeft" name="cAct">
+		<!--
+		<input name="name" ng-model="userTemp.name" type="text" ng-minlength="1" ng-maxlength="20" pattern="[ .a-zA-z-]">
+		<h6 class="error" ng-show="cAct.name.$error.maxlength"> Names limited to 20 characters</h6>
+		<h6 class="error" ng-show="cAct.name.$error.minlength"> Names must have at least 1 characters</h6>
+		<h6 class="error" ng-show="cAct.name.$error.pattern"> Names can only contain periods, spaces, hypens and alphabetic characters</h6>
+		
+		<input name="display_name" ng-model="userTemp.display_name" type="text" ng-minlength="6" ng-maxlength="20" pattern="[ .a-zA-z-]">
+                <h6 class="error" ng-show="cAct.display_name.$error.maxlength"> Display names limited to 20 characters</h6>
+                <h6 class="error" ng-show="cAct.display_name.$error.minlength"> Display names must have 6 characters</h6>
+                <h6 class="error" ng-show="cAct.display_name.$error.pattern"> Display names can only contain periods, spaces, hypens and alphabetic characters</h6>
+	
+		<input name="email" ng-model="userTemp.email" type="email" ng-minlength="10" ng-maxlength="40" >
+		<h6 class="error" ng-show="cAct.display_name.$error.maxlength"> Emails limited to 40 characters</h6>
+                <h6 class="error" ng-show="cAct.display_name.$error.minlength"> Emails must have 10 characters</h6>
+
+		<button ng-disabled="{{!cAct.$valid}}" ng-click="createAccount()">Create Account </button>
+		-->
+	</form>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+	$scope.baseUrl = "https://static-pottery-164109.appspot.com";
+	$scope.userTemp = {name:"Lucy", display_name:"Wonder",email:""};
+
+
+/* 
+	$scope.createAccount= function() {
+
+						return;
+					}
+  
+	$scope.createAccount = function() {
+					$http({
+                                        method: "POST",
+                                        url: $scope.baseUrl+"/users/create",
+                                        data: angular.toJson($scope.userTemp)
+                                }).then(function(response) {
+					var token = getCookie('CheeseDiary_token')
+var isAdmin = getCookie('CheeseDiary_isAdmin')
+
+if (token == "" || isAdmin == "") {
+  window.location.href="/admin/home";
+}
+
+if (isAdmin != "1") {
+  window.location.href="/admin/home";
+}
+
+// TODO: call API to ensure its a valid token
+
+// https://www.w3schools.com/js/js_cookies.asp
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+			
+				});
+			}
+
+
+				
+}
+
+*/
+
+});
+<script>
+</body>
+
